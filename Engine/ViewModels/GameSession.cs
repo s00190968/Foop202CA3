@@ -1,9 +1,10 @@
-﻿using Engine.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Engine.Models;
+using Engine.Factories;
 
 namespace Engine.ViewModels
 {
@@ -11,6 +12,8 @@ namespace Engine.ViewModels
     {
         public Player CurrentPlayer { get; set; }
         public Location CurrentLocation { get; set; }
+
+        public World CurrentWorld;
 
         public GameSession()
         {
@@ -24,14 +27,9 @@ namespace Engine.ViewModels
                 Gold = 10
             };
 
-            CurrentLocation = new Location
-            {
-                Name = "Home",
-                X = 0,
-                Y = -1,
-                Description = "This is your home, for home is where the heart is and your bed, computer and consoles are inside of this building.",
-                ImagePath = "/Engine;component/Images/Locations/home.jpg"
-            };
+            WorldFactory wFactory = new WorldFactory();
+            CurrentWorld = wFactory.CreateWorld();
+            CurrentLocation = CurrentWorld.GetLocationAt(0, 0);
         }
     }
 }
