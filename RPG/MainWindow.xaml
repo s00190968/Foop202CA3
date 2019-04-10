@@ -62,8 +62,7 @@
 
             <StackPanel x:Name="LocationStackPnl" Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="5">
                 <TextBlock Text="{Binding CurrentLocation.Name}" HorizontalAlignment="Center"/>
-                <Image HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       Width="125" Height="125" 
+                <Image Width="125" Height="125" 
                        Source="{Binding CurrentLocation.ImagePath}"/>
                 <TextBlock x:Name="DescriptionTxtblk" Text="{Binding CurrentLocation.Description}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
             </StackPanel>
