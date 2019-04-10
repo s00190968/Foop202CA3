@@ -48,8 +48,27 @@
             <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding CurrentPlayer.Gold}"/>
 
         </Grid>
+
+        <Grid x:Name="Game_Data" Grid.Row="1" Grid.Column="1" Background="Bisque">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="LocationStackPnl" Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="5">
+                <TextBlock Text="{Binding CurrentLocation.Name}" HorizontalAlignment="Center"/>
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       Width="125" Height="125" 
+                       Source="{Binding CurrentLocation.ImagePath}"/>
+                <TextBlock x:Name="DescriptionTxtblk" Text="{Binding CurrentLocation.Description}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
         
-        <Label Grid.Row="1" Grid.Column="1" Content="Game data" Background="Gainsboro"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Inventory/Quests" Background="Firebrick"/>
         <Label Grid.Row="2" Grid.Column="1" Content="Combat/Movement" Background="Tomato"/>
     </Grid>

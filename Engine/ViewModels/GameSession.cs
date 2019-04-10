@@ -30,7 +30,7 @@ namespace Engine.ViewModels
                 X = 0,
                 Y = -1,
                 Description = "This is your home, for home is where the heart is and your bed, computer and consoles are inside of this building.",
-                ImagePath = "/Engine;component/Images/Locations/home.png"
+                ImagePath = "/Engine;component/Images/Locations/home.jpg"
             };
         }
     }
