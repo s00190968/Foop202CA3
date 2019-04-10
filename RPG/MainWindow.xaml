@@ -34,8 +34,8 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Name: "/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentPlayer.Name}"/>
+            <Label x:Name="playerNameLbl" Grid.Row="0" Grid.Column="0" Content="Name: " Style="{StaticResource playerDataLabel}"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentPlayer.Name}" Style="{StaticResource playerDataTextblock}"/>
             <Label Grid.Row="1" Grid.Column="0" Content="HP: "/>
             <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding CurrentPlayer.HitPoints}"/>
             <Label Grid.Row="2" Grid.Column="0" Content="Class: "/>

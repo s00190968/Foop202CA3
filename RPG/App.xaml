@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:RPG"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="playerDataLabel" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Comic Sans"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style x:Key="playerDataTextblock" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Comic Sans"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
     </Application.Resources>
 </Application>
