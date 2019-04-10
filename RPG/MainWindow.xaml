@@ -12,12 +12,43 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Player data" Background="Aqua"/>
+        <Grid Name="PlayerData" Grid.Row="1" Grid.Column="0" Background="Aqua">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Name: "/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentPlayer.Name}"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="HP: "/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding CurrentPlayer.HitPoints}"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Class: "/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CurrentPlayer.CharacterClass}"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="XP: "/>
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding CurrentPlayer.ExperincePoints}"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Level: "/>
+            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding CurrentPlayer.Level}"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Gold: "/>
+            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding CurrentPlayer.Gold}"/>
+
+        </Grid>
+        
         <Label Grid.Row="1" Grid.Column="1" Content="Game data" Background="Gainsboro"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Inventory/Quests" Background="Firebrick"/>
         <Label Grid.Row="2" Grid.Column="1" Content="Combat/Movement" Background="Tomato"/>
