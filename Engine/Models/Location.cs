@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Engine.Models
 {
-    class Location
+    public class Location
     {
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string Description { get; set; }
+        public string ImagePath { get; set; }
     }
 }
