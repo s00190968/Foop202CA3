@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:RPG"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
+    <Window.Resources>
+        <!--Gets a boolean and returns it to visibility for movement buttons-->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -69,6 +73,44 @@
         </Grid>
         
         <Label Grid.Row="2" Grid.Column="0" Content="Inventory/Quests" Background="Firebrick"/>
-        <Label Grid.Row="2" Grid.Column="1" Content="Combat/Movement" Background="Tomato"/>
+
+        <Grid Name="Combat_Movement_Area" Grid.Row="2" Grid.Column="1" Background="Tomato">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Name="MovementButtons" Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="MoveUp" Grid.Row="0" Grid.Column="1" Content="North" 
+                        Style="{StaticResource MovementButtons}" Click="MoveUp_Click"
+                        Visibility="{Binding CanMoveUp, Converter={StaticResource BooleanToVisibility}}"/>
+                
+                <Button Name="MoveLeft" Grid.Row="1" Grid.Column="0" Content="West"
+                        Style="{StaticResource MovementButtons}" Click="MoveLeft_Click"
+                        Visibility="{Binding CanMoveLeft, Converter={StaticResource BooleanToVisibility}}"/>
+                
+                <Button Name="MoveRight" Grid.Row="1" Grid.Column="2" Content="East"
+                        Style="{StaticResource MovementButtons}" Click="MoveRight_Click"
+                        Visibility="{Binding CanMoveRight, Converter={StaticResource BooleanToVisibility}}"/>
+                
+                <Button Name="MoveDown" Grid.Row="2" Grid.Column="1" Content="South"
+                        Style="{StaticResource MovementButtons}" Click="MoveDown_Click"
+                        Visibility="{Binding CanMoveDown, Converter={StaticResource BooleanToVisibility}}"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

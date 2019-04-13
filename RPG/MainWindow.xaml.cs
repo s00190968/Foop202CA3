@@ -30,5 +30,25 @@ namespace RPG
             //xaml gets the values from the gamesession
             DataContext = gameSession;
         }
+
+        private void MoveUp_Click(object sender, RoutedEventArgs e)
+        {
+            gameSession.MoveUp();
+        }
+
+        private void MoveRight_Click(object sender, RoutedEventArgs e)
+        {
+            gameSession.MoveRight();
+        }
+
+        private void MoveLeft_Click(object sender, RoutedEventArgs e)
+        {
+            gameSession.MoveLeft();
+        }
+
+        private void MoveDown_Click(object sender, RoutedEventArgs e)
+        {
+            gameSession.MoveDown();
+        }
     }
 }
