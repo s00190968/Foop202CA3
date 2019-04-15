@@ -8,9 +8,9 @@ using Engine.Models;
 namespace Engine.Factories
 {
     //internal because it should only be used inside of engine project
-    internal class WorldFactory
+    internal static class WorldFactory
     {
-        internal World CreateWorld()
+        internal static World CreateWorld()
         {
             World newWorld = new World();
 

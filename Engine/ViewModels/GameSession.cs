@@ -74,27 +74,37 @@ namespace Engine.ViewModels
                 Level = 1,
                 Gold = 10
             };
-
-            WorldFactory wFactory = new WorldFactory();
-            CurrentWorld = wFactory.CreateWorld();
+            CurrentWorld = WorldFactory.CreateWorld();
             CurrentLocation = CurrentWorld.GetLocationAt(0, -1);
         }
 
         public void MoveUp()
         {
-            CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X, CurrentLocation.Y + 1);
+            if (CanMoveUp)
+            {
+                CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X, CurrentLocation.Y + 1);
+            }
         }
         public void MoveDown()
         {
-            CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X, CurrentLocation.Y - 1);
+            if (CanMoveDown)
+            {
+                CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X, CurrentLocation.Y - 1);
+            }
         }
         public void MoveLeft()
         {
-            CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X - 1, CurrentLocation.Y);
+            if (CanMoveLeft)
+            {
+                CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X - 1, CurrentLocation.Y);
+            }
         }
         public void MoveRight()
         {
-            CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X + 1, CurrentLocation.Y);
+            if (CanMoveRight)
+            {
+                CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X + 1, CurrentLocation.Y);
+            }
         }
     }
 }

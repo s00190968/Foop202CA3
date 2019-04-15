@@ -61,7 +61,7 @@ namespace Engine.Models
             set
             {
                 level = value;
-                OnPropertyChanged(nameif(Level));
+                OnPropertyChanged(nameof(Level));
 
             }
         }
