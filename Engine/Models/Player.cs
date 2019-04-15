@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Models
 {
-    public class Player : INotifyPropertyChanged
+    public class Player : BaseNotification
     {
         private string name;
         private string characterClass;
@@ -22,7 +22,7 @@ namespace Engine.Models
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged(nameof(Name));
             }
         }
         public string CharacterClass
@@ -31,7 +31,7 @@ namespace Engine.Models
             set
             {
                 characterClass = value;
-                OnPropertyChanged("CharacterClass");
+                OnPropertyChanged(nameof(CharacterClass));
 
             }
         }
@@ -41,7 +41,7 @@ namespace Engine.Models
             set
             {
                 hp = value;
-                OnPropertyChanged("HitPoints");
+                OnPropertyChanged(nameof(HitPoints));
 
             }
         }
@@ -51,7 +51,7 @@ namespace Engine.Models
             set
             {
                 xp = value;
-                OnPropertyChanged("ExperiencePoints");
+                OnPropertyChanged(nameof(ExperiencePoints));
 
             }
         }
@@ -61,7 +61,7 @@ namespace Engine.Models
             set
             {
                 level = value;
-                OnPropertyChanged("Level");
+                OnPropertyChanged(nameif(Level));
 
             }
         }
@@ -71,15 +71,9 @@ namespace Engine.Models
             set
             {
                 gold = value;
-                OnPropertyChanged("Gold");
+                OnPropertyChanged(nameof(Gold));
 
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

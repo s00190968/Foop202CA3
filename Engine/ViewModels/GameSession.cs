@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Engine.ViewModels
 {
-    public class GameSession : INotifyPropertyChanged
+    public class GameSession : BaseNotification
     {
         private Location currentLoc;
 
@@ -24,11 +24,11 @@ namespace Engine.ViewModels
             set
             {
                 currentLoc = value;
-                OnPropertyChanged("CurrentLocation");
-                OnPropertyChanged("CanMoveUp");
-                OnPropertyChanged("CanMoveDown");
-                OnPropertyChanged("CanMoveLeft");
-                OnPropertyChanged("CanMoveRight");
+                OnPropertyChanged(nameof(CurrentLocation));
+                OnPropertyChanged(nameof(CanMoveUp));
+                OnPropertyChanged(nameof(CanMoveDown));
+                OnPropertyChanged(nameof(CanMoveLeft));
+                OnPropertyChanged(nameof(CanMoveRight));
             }
         }
 
@@ -95,12 +95,6 @@ namespace Engine.ViewModels
         public void MoveRight()
         {
             CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X + 1, CurrentLocation.Y);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
