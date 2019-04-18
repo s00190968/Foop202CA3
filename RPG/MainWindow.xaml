@@ -71,8 +71,19 @@
                 <TextBlock x:Name="DescriptionTxtblk" Text="{Binding CurrentLocation.Description}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
             </StackPanel>
         </Grid>
-        
-        <Label Grid.Row="2" Grid.Column="0" Content="Inventory/Quests" Background="Firebrick"/>
+
+        <Grid Grid.Row="2" Grid.Column="0" Background="Firebrick">
+            <TabControl>
+                <TabItem Header="Inventory">
+                    <DataGrid ItemsSource="{Binding CurrentPlayer.Inventory}" AutoGenerateColumns="False" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Descrition" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+        </Grid>
 
         <Grid Name="Combat_Movement_Area" Grid.Row="2" Grid.Column="1" Background="Tomato">
             <Grid.RowDefinitions>

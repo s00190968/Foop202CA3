@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace Engine.Models
         private int xp;
         private int level;
         private int gold;
+
+        public ObservableCollection<GameItem> Inventory { get; set; }
 
         public string Name
         {
@@ -72,8 +75,12 @@ namespace Engine.Models
             {
                 gold = value;
                 OnPropertyChanged(nameof(Gold));
-
             }
+        }
+
+        public Player()
+        {
+            Inventory = new ObservableCollection<GameItem>();
         }
     }
 }
