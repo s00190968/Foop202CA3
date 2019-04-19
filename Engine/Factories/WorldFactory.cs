@@ -46,17 +46,30 @@ namespace Engine.Factories
 
             newWorld.AddLocation(0, 1, "Herbalist's hut",
                 "You see a small hut, with plants drying from the roof.",
-                "/Engine;component/Images/Locations/HerbalistsHut.png");
+                "/Engine;component/Images/Locations/HerbalistsHut.jpg");
 
             newWorld.AddLocation(0, 2, "Herbalist's garden",
                 "There are many plants here, with snakes hiding behind them.",
-                "/Engine;component/Images/Locations/HerbalistsGarden.png");
+                "/Engine;component/Images/Locations/HerbalistsGarden.jpg");
 
             #endregion
 
             #region quests
 
             newWorld.GetLocationAt(0, 1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(1));
+
+            #endregion
+
+            #region monsters
+
+            //rats to farmers field
+            newWorld.GetLocationAt(-2, -1).AddMonster(2,100);
+
+            //spiders to spider forest
+            newWorld.GetLocationAt(2, 0).AddMonster(3, 100);
+            
+            //snakes to herb garden
+            newWorld.GetLocationAt(0, 2).AddMonster(1, 100);
 
             #endregion
 

@@ -12,6 +12,7 @@ namespace Engine.ViewModels
     public class GameSession : BaseNotification
     {
         private Location currentLoc;
+        private Monster currentMonster;
 
         public Player CurrentPlayer { get; set; }
 
@@ -31,8 +32,25 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(CanMoveRight));
 
                 GivePlayerQuestsAtLocation();
+                GetMonsterAtLocation();
             }
         }
+
+        public Monster CurrentMonster
+        {
+            get
+            {
+                return currentMonster;
+            }
+            set
+            {
+                currentMonster = value;
+                OnPropertyChanged(nameof(CurrentMonster));
+                OnPropertyChanged(nameof(HasMonster));
+            }
+        }
+
+        public bool HasMonster => CurrentMonster != null;
 
         public bool CanMoveUp//returns true if there is a place up from current
         {
@@ -119,6 +137,11 @@ namespace Engine.ViewModels
                     CurrentPlayer.Quests.Add(new QuestStatus(quest));//add quest to player
                 }
             }
+        }
+
+        private void GetMonsterAtLocation()
+        {
+            CurrentMonster = CurrentLocation.GetMonster();
         }
     }
 }

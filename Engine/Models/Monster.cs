@@ -35,7 +35,7 @@ namespace Engine.Models
         public Monster(string name, string imageName, int maxhp, int rewardxp, int rewardgold)
         {
             Name = name;
-            ImageName = string.Format($"/Engine;component/Images/Monsters/{0}", imageName);
+            ImageName = string.Format("/Engine;component/Images/Monsters/{0}", imageName);
             MaxHp = maxhp;
             Hp = maxhp;
             RewardExp = rewardxp;
