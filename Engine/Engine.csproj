@@ -42,15 +42,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factories\ItemFactory.cs" />
+    <Compile Include="Factories\MonsterFactory.cs" />
     <Compile Include="Factories\QuestFactory.cs" />
     <Compile Include="Factories\WorldFactory.cs" />
     <Compile Include="Models\BaseNotification.cs" />
     <Compile Include="Models\GameItem.cs" />
     <Compile Include="Models\ItemQuantity.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Quest.cs" />
     <Compile Include="Models\QuestStatus.cs" />
+    <Compile Include="Models\RandNumGen.cs" />
     <Compile Include="Models\Weapon.cs" />
     <Compile Include="Models\World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,7 +61,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Images\Locations\Home.png" />
+    <Resource Include="Images\Locations\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Monsters\Rat.png" />
+    <Resource Include="Images\Monsters\Snake.png" />
+    <Resource Include="Images\Monsters\Spider.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
