@@ -14,6 +14,8 @@ namespace Engine.Factories
         {
             World newWorld = new World();
 
+            #region locations
+
             newWorld.AddLocation(-2, -1, "Farmer's Field",
                 "There are rows of corn growing here, with giant rats hiding between them.",
                 "/Engine;component/Images/Locations/FarmFields.png");
@@ -49,6 +51,14 @@ namespace Engine.Factories
             newWorld.AddLocation(0, 2, "Herbalist's garden",
                 "There are many plants here, with snakes hiding behind them.",
                 "/Engine;component/Images/Locations/HerbalistsGarden.png");
+
+            #endregion
+
+            #region quests
+
+            newWorld.GetLocationAt(0, 1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(1));
+
+            #endregion
 
             return newWorld;
         }

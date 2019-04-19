@@ -29,6 +29,8 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(CanMoveDown));
                 OnPropertyChanged(nameof(CanMoveLeft));
                 OnPropertyChanged(nameof(CanMoveRight));
+
+                GivePlayerQuestsAtLocation();
             }
         }
 
@@ -104,6 +106,18 @@ namespace Engine.ViewModels
             if (CanMoveRight)
             {
                 CurrentLocation = CurrentWorld.GetLocationAt(CurrentLocation.X + 1, CurrentLocation.Y);
+            }
+        }
+
+        private void GivePlayerQuestsAtLocation()
+        {
+            foreach(Quest quest in CurrentLocation.QuestsAvailableHere)
+            {
+                //if player doesn't have a quest with the id in location
+                if(!CurrentPlayer.Quests.Any(q => q.PlayerQuest.ID == quest.ID))
+                {
+                    CurrentPlayer.Quests.Add(new QuestStatus(quest));//add quest to player
+                }
             }
         }
     }
