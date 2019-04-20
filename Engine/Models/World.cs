@@ -8,7 +8,7 @@ namespace Engine.Models
 {
     public class World
     {
-        private List<Location> locations = new List<Location>();
+        private readonly List<Location> locations = new List<Location>();
 
          //internal because only world factory should use this function
          internal void AddLocation(int x, int y, string name, string description, string imagePath)
@@ -19,7 +19,7 @@ namespace Engine.Models
                 X = x,
                 Y = y,
                 Description = description,
-                ImagePath = imagePath
+                ImagePath = $"/Engine;component/Images/Locations/{imagePath}"
             });
         }
 
@@ -32,7 +32,6 @@ namespace Engine.Models
                     return l;
                 }
             }
-            Console.WriteLine("Location at (" + x + ", " + y + ") not found!");
             return null;
         }
     }

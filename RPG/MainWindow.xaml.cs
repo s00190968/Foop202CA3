@@ -22,11 +22,10 @@ namespace RPG
     /// </summary>
     public partial class MainWindow : Window
     {
-        private GameSession gameSession;
+        private readonly GameSession gameSession = new GameSession();
         public MainWindow()
         {
             InitializeComponent();
-            gameSession = new GameSession();
 
             gameSession.OnMessageRaised += OnGameMessageRaised;
 
@@ -58,6 +57,11 @@ namespace RPG
         {
             GameMessagesRTxbx.Document.Blocks.Add(new Paragraph(new Run(e.Message)));
             GameMessagesRTxbx.ScrollToEnd();
+        }
+
+        private void OnClick_AttackMonster(object sender, RoutedEventArgs e)
+        {
+            gameSession.AttackCurrentMonster();
         }
     }
 }

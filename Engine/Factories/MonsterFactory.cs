@@ -14,20 +14,20 @@ namespace Engine.Factories
             switch (id)
             {
                 case 1:
-                    Monster snake = new Monster("Snake", "Snake.png", 4, 5, 1);
+                    Monster snake = new Monster("Snake", "Snake.png", 4, 1, 2, 5, 1);
                     addLoot(snake, 9001, 25);
                     addLoot(snake, 9002, 75);
 
                     return snake;
                 case 2:
-                    Monster rat = new Monster("Rat", "Rat.jpg", 5, 5, 1);
+                    Monster rat = new Monster("Rat", "Rat.jpg", 5, 1, 2, 5, 1);
                     addLoot(rat, 9003, 25);
                     addLoot(rat, 9004, 75);
 
                     return rat;
 
                 case 3:
-                    Monster spider = new Monster("Giant Spider", "Spider.jpg", 10, 10, 3);
+                    Monster spider = new Monster("Giant Spider", "Spider.jpg", 10, 2, 4, 10, 3);
                     addLoot(spider, 9005, 25);
                     addLoot(spider, 9006, 75);
 

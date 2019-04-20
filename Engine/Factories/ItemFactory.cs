@@ -9,12 +9,10 @@ namespace Engine.Factories
 {
     public static class ItemFactory
     {
-        private static List<GameItem> standardGameItems;
+        private static readonly List<GameItem> standardGameItems = new List<GameItem>();
 
         static ItemFactory()
         {
-            standardGameItems = new List<GameItem>();
-
             standardGameItems.Add(new Weapon(1001, "Pointy Stick", 1, 1, 2));
             standardGameItems.Add(new Weapon(1002, "Rusty Sword", 5, 1, 3));
             standardGameItems.Add(new GameItem(9001, "Snake Fang", 1));
@@ -28,8 +26,13 @@ namespace Engine.Factories
         public static GameItem CreateGameItem(int itemTypeID)
         {
             GameItem standardItem = standardGameItems.FirstOrDefault(item => item.ItemTypeId == itemTypeID);
+
             if(standardItem != null)
             {
+                if(standardItem is Weapon)//use clone function in weapon
+                {
+                    return (standardItem as Weapon).Clone();
+                }
                 return standardItem.Clone();
             }
             return null;

@@ -75,5 +75,13 @@
     <Resource Include="Images\Monsters\Rat.jpg" />
     <Resource Include="Images\Monsters\Spider.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Locations\FarmFields.jpg" />
+    <Resource Include="Images\Locations\Farmhouse.jpg" />
+    <Resource Include="Images\Locations\SpiderForest.jpg" />
+    <Resource Include="Images\Locations\TownGate.jpg" />
+    <Resource Include="Images\Locations\TownSquare.jpg" />
+    <Resource Include="Images\Locations\Trader.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
