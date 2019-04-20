@@ -69,6 +69,17 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
+            
+            <!--game messages-->
+            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="White" BorderThickness="1">
+                <RichTextBox x:Name="GameMessagesRTxbx" VerticalScrollBarVisibility="Auto" Style="{StaticResource GameMessages}">
+                    <RichTextBox.Resources>
+                        <Style TargetType="Paragraph">
+                            <Setter Property="Margin" Value="2"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+            </Border>
 
             <!--location info-->
             <StackPanel x:Name="LocationStackPnl" Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="5">

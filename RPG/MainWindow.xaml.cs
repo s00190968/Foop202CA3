@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Engine.EventArgs;
 using Engine.ViewModels;
 
 namespace RPG
@@ -26,6 +27,8 @@ namespace RPG
         {
             InitializeComponent();
             gameSession = new GameSession();
+
+            gameSession.OnMessageRaised += OnGameMessageRaised;
 
             //xaml gets the values from the gamesession
             DataContext = gameSession;
@@ -49,6 +52,12 @@ namespace RPG
         private void MoveDown_Click(object sender, RoutedEventArgs e)
         {
             gameSession.MoveDown();
+        }
+
+        private void OnGameMessageRaised(object sender, GameMessageEventArgs e)
+        {
+            GameMessagesRTxbx.Document.Blocks.Add(new Paragraph(new Run(e.Message)));
+            GameMessagesRTxbx.ScrollToEnd();
         }
     }
 }
