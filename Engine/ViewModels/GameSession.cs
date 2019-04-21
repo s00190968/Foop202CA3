@@ -35,6 +35,7 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(CanMoveLeft));
                 OnPropertyChanged(nameof(CanMoveRight));
 
+                CompleteQuestsAtLocation();
                 GivePlayerQuestsAtLocation();
                 GetMonsterAtLocation();
             }
@@ -210,6 +211,64 @@ namespace Engine.ViewModels
                 if(!CurrentPlayer.Quests.Any(q => q.PlayerQuest.ID == quest.ID))
                 {
                     CurrentPlayer.Quests.Add(new QuestStatus(quest));//add quest to player
+
+                    RaiseMessage("");
+                    RaiseMessage($"You received the {quest.Name} quest.");
+                    RaiseMessage(quest.Description);
+
+                    RaiseMessage("Return with:");
+                    foreach (ItemQuantity iq in quest.QuestItems)
+                    {
+                        RaiseMessage($"{iq.Quantity} {ItemFactory.CreateGameItem(iq.ItemId).Name}");
+                    }
+
+                    RaiseMessage("\nAnd You'll receive:");
+                    RaiseMessage($"{quest.RewardXP} of EXP.\n{quest.RewardGold} of gold.");
+                    foreach (ItemQuantity iq in quest.QuestItems)
+                    {
+                        RaiseMessage($"  {iq.Quantity} {ItemFactory.CreateGameItem(iq.ItemId).Name}");
+                    }
+                }
+            }
+        }
+
+        private void CompleteQuestsAtLocation()
+        {
+            foreach (Quest quest in CurrentLocation.QuestsAvailableHere)
+            {
+                QuestStatus questToComplete = CurrentPlayer.Quests.FirstOrDefault(q =>
+                q.PlayerQuest.ID == quest.ID && !q.IsCompleted);
+
+                if(questToComplete != null)
+                {
+                    if (CurrentPlayer.HasAllTheseItems(quest.QuestItems))
+                    {
+                        //remove items from player's inventory
+                        foreach(ItemQuantity iq in quest.QuestItems)
+                        {
+                            for(int i = 0; i < iq.Quantity; i++)
+                            {
+                                CurrentPlayer.RemoveItemFromInventory(
+                                    CurrentPlayer.Inventory.First(
+                                        item => item.ItemTypeID == iq.ItemId));
+                            }
+                        }
+                        RaiseMessage("");
+                        RaiseMessage($"Yuo completed the {quest.Name} quest.");
+
+                        //give player the rewards
+                        CurrentPlayer.ExperiencePoints += quest.RewardXP;
+                        CurrentPlayer.Gold += quest.RewardGold;
+                        RaiseMessage($"You received {quest.RewardXP} EXP \n and {quest.RewardGold} gold.");
+
+                        foreach (ItemQuantity iq in quest.RewardItems)
+                        {
+                            GameItem reward = ItemFactory.CreateGameItem(iq.ItemId);
+                            CurrentPlayer.AddItemToInventory(reward);
+                            RaiseMessage($"You received {reward.Name}.");
+                        }
+                        questToComplete.IsCompleted = true;
+                    }
                 }
             }
         }
