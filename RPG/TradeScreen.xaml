@@ -26,6 +26,68 @@
                Content="{Binding CurrentTrader.Name}"/>
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Content="Your Inventory"/>
         <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="Trader's Inventory"/>
+
+        <!--player inventory-->
+        <DataGrid Grid.Row="2" Grid.Column="0" Margin="10"
+                  ItemsSource="{Binding CurrentPlayer.Inventory}"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Description"
+                                    IsReadOnly="True"
+                                    Width="*"
+                                    Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Price"
+                                    IsReadOnly="True"
+                                    Width="auto"
+                                    Binding="{Binding Path=Price}"/>
+                <DataGridTemplateColumn MinWidth="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="OnClick_Sell" Width="50" Content="Sell"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         
+        <!--trader inventory-->
+        <DataGrid Grid.Row="2" Grid.Column="1" Margin="10"
+                  ItemsSource="{Binding CurrentTrader.Inventory}"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Description"
+                                    IsReadOnly="True"
+                                    Width="*"
+                                    Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Price"
+                                    IsReadOnly="True"
+                                    Width="auto"
+                                    Binding="{Binding Path=Price}"/>
+                <DataGridTemplateColumn MinWidth="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="OnClick_Buy" Width="50" Content="Buy"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <!--messages-->
+        <TextBlock x:Name="MessagesTxbx" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Text="Buy something!"/>
+
+        <!--close-->
+        <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"
+                Width="75"
+                Content="Exit"
+                Click="OnClick_Exit"/>
     </Grid>
 </Window>

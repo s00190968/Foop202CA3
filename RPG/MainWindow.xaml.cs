@@ -66,6 +66,14 @@ namespace RPG
             gameSession.AttackCurrentMonster();
         }
 
+        private void OnClick_DisplayTraderScreen(object sender, RoutedEventArgs e)
+        {
+            TradeScreen tradeScreen = new TradeScreen();
+            tradeScreen.Owner = this;
+            tradeScreen.DataContext = gameSession;
+            tradeScreen.ShowDialog();
+        }
+
         //private void WeaponsCbx_DropDownOpened(object sender, EventArgs e)
         //{
         //    WeaponsCbx.ItemsSource = gameSession.CurrentPlayer.Weapons;

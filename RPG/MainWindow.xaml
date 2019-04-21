@@ -192,8 +192,10 @@
                 <!--trader-->
                 <Button Name="Trader" Grid.Row="1" Grid.Column="1" Content="Trader"
                         Style="{StaticResource MovementButtons}"
-                        Visibility="{Binding HasTrader, Converter={StaticResource BooleanToVisibility}}"/>
+                        Visibility="{Binding HasTrader, Converter={StaticResource BooleanToVisibility}}"
+                        Click="OnClick_DisplayTraderScreen"/>
             </Grid>
+            <!--<Button Content="Testing trade screen" Click="OnClick_DisplayTraderScreen" HorizontalAlignment="Left" Margin="123,147,0,0" VerticalAlignment="Top" Width="75"/>-->
         </Grid>
     </Grid>
 </Window>
