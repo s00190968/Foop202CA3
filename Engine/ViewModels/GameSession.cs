@@ -16,10 +16,10 @@ namespace Engine.ViewModels
 
         private Location currentLoc;
         private Monster currentMonster;
+        private Trader currentTrader;
 
         public Player CurrentPlayer { get; set; }
-        public Weapon CurrentWeapon { get; set; }
-
+        
         public Location CurrentLocation
         {
             get
@@ -38,9 +38,12 @@ namespace Engine.ViewModels
                 CompleteQuestsAtLocation();
                 GivePlayerQuestsAtLocation();
                 GetMonsterAtLocation();
+
+                CurrentTrader = CurrentLocation.TraderHere;
             }
         }
 
+        public Weapon CurrentWeapon { get; set; }
         public Monster CurrentMonster
         {
             get
@@ -60,7 +63,21 @@ namespace Engine.ViewModels
             }
         }
 
+        public Trader CurrentTrader
+        {
+            get
+            {
+                return currentTrader;
+            }
+            set
+            {
+                currentTrader = value;
+                OnPropertyChanged(nameof(CurrentTrader));
+                OnPropertyChanged(nameof(HasTrader));
+            }
+        }
         public bool HasMonster => CurrentMonster != null;
+        public bool HasTrader => CurrentTrader != null;
 
         #region direction checks
 
@@ -226,8 +243,9 @@ namespace Engine.ViewModels
                     RaiseMessage($"{quest.RewardXP} of EXP.\n{quest.RewardGold} of gold.");
                     foreach (ItemQuantity iq in quest.QuestItems)
                     {
-                        RaiseMessage($"  {iq.Quantity} {ItemFactory.CreateGameItem(iq.ItemId).Name}");
+                        RaiseMessage($"{iq.Quantity} {ItemFactory.CreateGameItem(iq.ItemId).Name}");
                     }
+                    RaiseMessage("");
                 }
             }
         }
