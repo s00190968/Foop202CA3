@@ -19,7 +19,7 @@ namespace Engine.Models
 
         public Weapon Copy()
         {
-            return new Weapon(ItemTypeId, Name, Price, MinDamage, MaxDamage);
+            return new Weapon(ItemTypeID, Name, Price, MinDamage, MaxDamage);
         }
     }
 }

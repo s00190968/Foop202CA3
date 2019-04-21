@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Engine.EventArgs;
+using Engine.Models;
 using Engine.ViewModels;
 
 namespace RPG
@@ -31,6 +32,7 @@ namespace RPG
 
             //xaml gets the values from the gamesession
             DataContext = gameSession;
+            //WeaponsCbx.ItemsSource = gameSession.CurrentPlayer.Weapons;
         }
 
         private void MoveUp_Click(object sender, RoutedEventArgs e)
@@ -63,5 +65,15 @@ namespace RPG
         {
             gameSession.AttackCurrentMonster();
         }
+
+        //private void WeaponsCbx_DropDownOpened(object sender, EventArgs e)
+        //{
+        //    WeaponsCbx.ItemsSource = gameSession.CurrentPlayer.Weapons;
+        //}
+
+        //private void WeaponsCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    gameSession.CurrentWeapon = WeaponsCbx.SelectedItem as Weapon;
+        //}
     }
 }
