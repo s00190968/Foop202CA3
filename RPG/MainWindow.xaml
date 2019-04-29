@@ -11,7 +11,8 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        Title="RPG Title Here" Height="600" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="RPG" Height="600" Width="800">
     <Window.Resources>
         <!--Gets a boolean and returns it to visibility for movement buttons-->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
@@ -29,52 +30,53 @@
         </Grid.ColumnDefinitions>
 
         <!--menu-->
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue"/>
-        
+        <!--<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue"/>-->
+
         <!--player info-->
-        <Grid Name="PlayerData" Grid.Row="1" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="1" Margin="5">
+            <Grid Name="PlayerData" Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Vertical" Margin="10" Grid.ColumnSpan="2">
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label x:Name="playerNameLbl" Content="Name: " VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding CurrentPlayer.Name}" VerticalAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Grid.Row="1" Grid.Column="0" Content="HP: " VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding CurrentPlayer.HitPoints}" VerticalAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Grid.Row="2" Grid.Column="0" Content="Class: " VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CurrentPlayer.CharacterClass}" VerticalAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Grid.Row="3" Grid.Column="0" Content="XP: " VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding CurrentPlayer.ExperincePoints}" VerticalAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Grid.Row="4" Grid.Column="0" Content="Level: " VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding CurrentPlayer.Level}" VerticalAlignment="Center"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                    <Label Grid.Row="5" Grid.Column="0" Content="Gold: " VerticalAlignment="Center"/>
-                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding CurrentPlayer.Gold}" VerticalAlignment="Center"/>
-                </StackPanel>
-            </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-        </Grid>
+                <StackPanel Orientation="Vertical" Margin="10" Grid.ColumnSpan="2" Grid.RowSpan="6">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                        <Label x:Name="playerNameLbl" Content="Name: " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding CurrentPlayer.Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                        <Label Grid.Row="1" Grid.Column="0" Content="HP: " VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding CurrentPlayer.HitPoints}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                        <Label Grid.Row="2" Grid.Column="0" Content="Class: " VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CurrentPlayer.CharacterClass}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                        <Label Grid.Row="3" Grid.Column="0" Content="XP: " VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding CurrentPlayer.ExperincePoints}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                        <Label Grid.Row="4" Grid.Column="0" Content="Level: " VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding CurrentPlayer.Level}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                        <Label Grid.Row="5" Grid.Column="0" Content="Gold: " VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding CurrentPlayer.Gold}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
 
         <!--gameplay-->
         <Grid x:Name="Game_Data" Grid.Row="1" Grid.Column="1">
@@ -82,15 +84,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            
+
             <!--game messages-->
-            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="White" BorderThickness="1">
-                <RichTextBox x:Name="GameMessagesRTxbx" VerticalScrollBarVisibility="Auto">
+            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="White" BorderThickness="1" Margin="5">
+                <RichTextBox x:Name="GameMessagesRTxbx" VerticalScrollBarVisibility="Auto" BorderBrush="{x:Null}">
                     <RichTextBox.Resources>
                         <Style TargetType="Paragraph">
                             <Setter Property="Margin" Value="2"/>
@@ -100,29 +102,33 @@
             </Border>
 
             <!--location info-->
-            <StackPanel x:Name="LocationStackPnl" Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="5">
-                <TextBlock Text="{Binding CurrentLocation.Name}" HorizontalAlignment="Center"/>
-                <Image Width="125" Height="125" 
+            <Border Grid.Column="1" Grid.Row="0" BorderBrush="White" BorderThickness="1" Margin="5">
+                <StackPanel x:Name="LocationStackPnl" Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="5">
+                    <TextBlock Text="{Binding CurrentLocation.Name}" HorizontalAlignment="Center"/>
+                    <Image Width="125" Height="125" 
                        Source="{Binding CurrentLocation.ImagePath}"/>
-                <TextBlock x:Name="DescriptionTxtblk" Text="{Binding CurrentLocation.Description}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-            </StackPanel>
-            
-            <!--monster info-->
-            <StackPanel x:Name="MonsterStackPnl" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="5">
-                <TextBlock Text="{Binding CurrentMonster.Name}" HorizontalAlignment="Center"/>
-                <Image Width="125" Height="125" 
-                       Source="{Binding CurrentMonster.ImageName}"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                            Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}">
-                    <TextBlock Text="HP: "/>
-                    <TextBlock Text="{Binding CurrentMonster.Hp}"/>
+                    <TextBlock x:Name="DescriptionTxtblk" Text="{Binding CurrentLocation.Description}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                 </StackPanel>
-            </StackPanel>
+            </Border>
+
+            <!--monster info-->
+            <Border Grid.Column="1" Grid.Row="1" BorderBrush="White" BorderThickness="1" Margin="5">
+                <StackPanel x:Name="MonsterStackPnl" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="5">
+                    <TextBlock Text="{Binding CurrentMonster.Name}" HorizontalAlignment="Center"/>
+                    <Image Width="125" Height="125" 
+                       Source="{Binding CurrentMonster.ImageName}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}">
+                        <TextBlock Text="HP: "/>
+                        <TextBlock Text="{Binding CurrentMonster.Hp}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
         </Grid>
 
         <!--inventory and quests-->
-        <Grid Grid.Row="2" Grid.Column="0">
-            <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1" Margin="10">
+        <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1" Margin="5">
+            <Grid Grid.Row="2" Grid.Column="0">
                 <Controls:MetroAnimatedTabControl>
                     <TabItem Header="Inventory" BorderBrush="{DynamicResource AccentColorBrush}">
                         <DataGrid ItemsSource="{Binding CurrentPlayer.Inventory}" 
@@ -149,8 +155,8 @@
                         </DataGrid>
                     </TabItem>
                 </Controls:MetroAnimatedTabControl>
-            </Border>
-        </Grid>
+            </Grid>
+        </Border>
 
         <!--Action controls-->
         <Grid Name="Combat_Movement_Area" Grid.Row="2" Grid.Column="1">
@@ -161,68 +167,71 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
-            
+
             <!--combat controls-->
-            <Grid Grid.Row="0" Grid.Column="0" 
+            <Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="1" Margin="5">
+                <Grid Grid.Row="0" Grid.Column="0" 
                   Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
 
-                <ComboBox Grid.Row="0" Grid.Column="0"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Row="0" Grid.Column="0"
                           ItemsSource="{Binding CurrentPlayer.Weapons}"
                           SelectedItem="{Binding CurrentWeapon}"
                           DisplayMemberPath="Name"
                           SelectedValuePath="ID"/>
 
 
-                <Button Grid.Row="0" Grid.Column="2" Content="Attack" Click="OnClick_AttackMonster"/>
-                
-            </Grid>                  
+                    <Button Grid.Row="0" Grid.Column="2" Content="Attack" Click="OnClick_AttackMonster"/>
+                </Grid>
+            </Border>
 
             <!--movement control-->
-            <Grid Name="MovementButtons" Grid.Row="0" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="1" Margin="5">
+                <Grid Name="MovementButtons" Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Button Name="MoveUp" Grid.Row="0" Grid.Column="1" Content="North" Margin="5"
+                    <Button Name="MoveUp" Grid.Row="0" Grid.Column="1" Content="North" Margin="5"
                         Click="MoveUp_Click"
                         Visibility="{Binding CanMoveUp, Converter={StaticResource BooleanToVisibility}}"/>
-                
-                <Button Name="MoveLeft" Grid.Row="1" Grid.Column="0" Content="West" Margin="5"
+
+                    <Button Name="MoveLeft" Grid.Row="1" Grid.Column="0" Content="West" Margin="5"
                         Click="MoveLeft_Click"
                         Visibility="{Binding CanMoveLeft, Converter={StaticResource BooleanToVisibility}}"/>
 
-                <Button Name="MoveRight" Grid.Row="1" Grid.Column="2" Content="East" Margin="5"
+                    <Button Name="MoveRight" Grid.Row="1" Grid.Column="2" Content="East" Margin="5"
                         Click="MoveRight_Click"
                         Visibility="{Binding CanMoveRight, Converter={StaticResource BooleanToVisibility}}"/>
 
-                <Button Name="MoveDown" Grid.Row="2" Grid.Column="1" Content="South" Margin="5"
+                    <Button Name="MoveDown" Grid.Row="2" Grid.Column="1" Content="South" Margin="5"
                         Click="MoveDown_Click"
                         Visibility="{Binding CanMoveDown, Converter={StaticResource BooleanToVisibility}}"/>
-                
-                <!--trader-->
-                <Button Name="Trader" Grid.Row="1" Grid.Column="1" Content="Trader" Margin="5"
+
+                    <!--trader-->
+                    <Button Name="Trader" Grid.Row="1" Grid.Column="1" Content="Trader" Margin="5"
                         Visibility="{Binding HasTrader, Converter={StaticResource BooleanToVisibility}}"
                         Click="OnClick_DisplayTraderScreen"/>
-            </Grid>
-            <!--<Button Content="Testing trade screen" Click="OnClick_DisplayTraderScreen" HorizontalAlignment="Left" Margin="123,147,0,0" VerticalAlignment="Top" Width="75"/>-->
+                </Grid>
+            </Border>
+            <Button Content="Testing trade screen" Click="OnClick_DisplayTraderScreen" HorizontalAlignment="Left" Margin="123,147,0,0" VerticalAlignment="Top" Width="auto"/>
         </Grid>
     </Grid>
 </Controls:MetroWindow>
