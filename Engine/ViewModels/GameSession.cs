@@ -111,7 +111,9 @@ namespace Engine.ViewModels
 
             if (!CurrentPlayer.Weapons.Any())
             {
+                Console.WriteLine("if current player doesn't have weapons add weapon");
                 CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(1001));
+                CurrentPlayer.UpdateWeapons();
             }
 
             CurrentWorld = WorldFactory.CreateWorld();

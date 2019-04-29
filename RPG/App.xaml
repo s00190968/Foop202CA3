@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:RPG"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/crimson.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/basedark.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+        <!--player data labels--><!--
         <Style x:Key="playerDataLabel" TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -11,6 +24,8 @@
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="Margin" Value="2"/>
         </Style>
+        
+        --><!--player data text--><!--
         <Style x:Key="playerDataTextblock" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -18,6 +33,8 @@
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="Margin" Value="2"/>
         </Style>
+        
+        --><!--movement buttons--><!--
         <Style x:Key="MovementButtons" TargetType="Button">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -28,7 +45,7 @@
             <Setter Property="MinHeight" Value="50"/>
         </Style>
         
-        <!--game messages box-->
+        --><!--game messages box--><!--
         <Style x:Key="GameMessages" TargetType="RichTextBox">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
@@ -36,6 +53,7 @@
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Height" Value="300"/>
-        </Style>
+        </Style>-->
+
     </Application.Resources>
 </Application>

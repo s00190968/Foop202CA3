@@ -20,7 +20,7 @@ namespace Engine.Models
         public ObservableCollection<GameItem> Inventory { get; set; }
 
         //get weapons from inventory to their own list
-        public List<GameItem> Weapons => Inventory.Where(i => i is Weapon).ToList();
+        public List<Weapon> Weapons { get; set; }
         public ObservableCollection<QuestStatus> Quests { get; set; }
 
         public string Name
@@ -86,18 +86,21 @@ namespace Engine.Models
         {
             Inventory = new ObservableCollection<GameItem>();
             Quests = new ObservableCollection<QuestStatus>();
+            Weapons = new List<Weapon>();
         }
 
         public void AddItemToInventory(GameItem item)
         {
             Inventory.Add(item);
             OnPropertyChanged(nameof(Weapons));
+            UpdateWeapons();
         }
 
         public void RemoveItemFromInventory(GameItem item)
         {
             Inventory.Remove(item);
             OnPropertyChanged(nameof(Weapons));
+            UpdateWeapons();
         }
 
         public bool HasAllTheseItems(List<ItemQuantity> items)
@@ -110,6 +113,20 @@ namespace Engine.Models
                 }
             }
             return true;
+        }
+
+        public void UpdateWeapons()
+        {
+            Weapons.Clear();
+
+            foreach(var item in Inventory)
+            {
+                Console.WriteLine(item.GetType());
+                if (item.Type == ItemType.Weapons)
+                {                              
+                    Weapons.Add(item as Weapon);
+                }
+            }
         }
     }
 }

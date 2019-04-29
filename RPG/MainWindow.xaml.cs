@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 using Engine.EventArgs;
 using Engine.Models;
 using Engine.ViewModels;
+using MahApps.Metro.Controls;
 
 namespace RPG
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         private readonly GameSession gameSession = new GameSession();
         public MainWindow()

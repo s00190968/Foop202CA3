@@ -1,12 +1,16 @@
-﻿<Window x:Class="RPG.MainWindow"
+﻿<Controls:MetroWindow x:Class="RPG.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:RPG"
         xmlns:viewModels="clr-namespace:Engine.ViewModels;assembly=Engine"
         d:DataContext="{d:DesignInstance viewModels:GameSession}"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
+        GlowBrush="{DynamicResource AccentColorBrush}"
         Title="RPG Title Here" Height="600" Width="800">
     <Window.Resources>
         <!--Gets a boolean and returns it to visibility for movement buttons-->
@@ -28,7 +32,7 @@
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue"/>
         
         <!--player info-->
-        <Grid Name="PlayerData" Grid.Row="1" Grid.Column="0" Background="Aqua">
+        <Grid Name="PlayerData" Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -43,23 +47,37 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Label x:Name="playerNameLbl" Grid.Row="0" Grid.Column="0" Content="Name: " Style="{StaticResource playerDataLabel}"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentPlayer.Name}" Style="{StaticResource playerDataTextblock}"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="HP: "/>
-            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding CurrentPlayer.HitPoints}"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Class: "/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CurrentPlayer.CharacterClass}"/>
-            <Label Grid.Row="3" Grid.Column="0" Content="XP: "/>
-            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding CurrentPlayer.ExperincePoints}"/>
-            <Label Grid.Row="4" Grid.Column="0" Content="Level: "/>
-            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding CurrentPlayer.Level}"/>
-            <Label Grid.Row="5" Grid.Column="0" Content="Gold: "/>
-            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding CurrentPlayer.Gold}"/>
+            <StackPanel Orientation="Vertical" Margin="10" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label x:Name="playerNameLbl" Content="Name: " VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding CurrentPlayer.Name}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Grid.Row="1" Grid.Column="0" Content="HP: " VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding CurrentPlayer.HitPoints}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Grid.Row="2" Grid.Column="0" Content="Class: " VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding CurrentPlayer.CharacterClass}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Grid.Row="3" Grid.Column="0" Content="XP: " VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding CurrentPlayer.ExperincePoints}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Grid.Row="4" Grid.Column="0" Content="Level: " VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding CurrentPlayer.Level}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                    <Label Grid.Row="5" Grid.Column="0" Content="Gold: " VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding CurrentPlayer.Gold}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
 
         </Grid>
 
         <!--gameplay-->
-        <Grid x:Name="Game_Data" Grid.Row="1" Grid.Column="1" Background="Bisque">
+        <Grid x:Name="Game_Data" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -72,7 +90,7 @@
             
             <!--game messages-->
             <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="White" BorderThickness="1">
-                <RichTextBox x:Name="GameMessagesRTxbx" VerticalScrollBarVisibility="Auto" Style="{StaticResource GameMessages}">
+                <RichTextBox x:Name="GameMessagesRTxbx" VerticalScrollBarVisibility="Auto">
                     <RichTextBox.Resources>
                         <Style TargetType="Paragraph">
                             <Setter Property="Margin" Value="2"/>
@@ -103,29 +121,39 @@
         </Grid>
 
         <!--inventory and quests-->
-        <Grid Grid.Row="2" Grid.Column="0" Background="Firebrick">
-            <TabControl>
-                <TabItem Header="Inventory">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Inventory}" AutoGenerateColumns="False" HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Descrition" Binding="{Binding Name}" Width="*"/>
-                            <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-                <TabItem Header="Quests">
-                    <DataGrid ItemsSource="{Binding CurrentPlayer.Quests}" AutoGenerateColumns="False" HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding PlayerQuest.Name}" Width="*"/>
-                            <DataGridTextColumn Header="Done?" Binding="{Binding IsCompleted}" Width="auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-            </TabControl>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Border Grid.Row="2" Grid.Column="0" BorderBrush="White" BorderThickness="1" Margin="10">
+                <Controls:MetroAnimatedTabControl>
+                    <TabItem Header="Inventory" BorderBrush="{DynamicResource AccentColorBrush}">
+                        <DataGrid ItemsSource="{Binding CurrentPlayer.Inventory}" 
+                                  AutoGenerateColumns="False" 
+                                  HeadersVisibility="Column">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Description" 
+                                                    Binding="{Binding Name}" 
+                                                    Width="*"
+                                                    IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Price" 
+                                                    Binding="{Binding Price}" 
+                                                    Width="auto"
+                                                    IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem Header="Quests" BorderBrush="{DynamicResource AccentColorBrush}">
+                        <DataGrid ItemsSource="{Binding CurrentPlayer.Quests}" AutoGenerateColumns="False" HeadersVisibility="Column">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding PlayerQuest.Name}" Width="*"/>
+                                <DataGridTextColumn Header="Done?" Binding="{Binding IsCompleted}" Width="auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </Controls:MetroAnimatedTabControl>
+            </Border>
         </Grid>
 
         <!--Action controls-->
-        <Grid Name="Combat_Movement_Area" Grid.Row="2" Grid.Column="1" Background="Tomato">
+        <Grid Name="Combat_Movement_Area" Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -173,29 +201,28 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Name="MoveUp" Grid.Row="0" Grid.Column="1" Content="North" 
-                        Style="{StaticResource MovementButtons}" Click="MoveUp_Click"
+                <Button Name="MoveUp" Grid.Row="0" Grid.Column="1" Content="North" Margin="5"
+                        Click="MoveUp_Click"
                         Visibility="{Binding CanMoveUp, Converter={StaticResource BooleanToVisibility}}"/>
                 
-                <Button Name="MoveLeft" Grid.Row="1" Grid.Column="0" Content="West"
-                        Style="{StaticResource MovementButtons}" Click="MoveLeft_Click"
+                <Button Name="MoveLeft" Grid.Row="1" Grid.Column="0" Content="West" Margin="5"
+                        Click="MoveLeft_Click"
                         Visibility="{Binding CanMoveLeft, Converter={StaticResource BooleanToVisibility}}"/>
-                
-                <Button Name="MoveRight" Grid.Row="1" Grid.Column="2" Content="East"
-                        Style="{StaticResource MovementButtons}" Click="MoveRight_Click"
+
+                <Button Name="MoveRight" Grid.Row="1" Grid.Column="2" Content="East" Margin="5"
+                        Click="MoveRight_Click"
                         Visibility="{Binding CanMoveRight, Converter={StaticResource BooleanToVisibility}}"/>
-                
-                <Button Name="MoveDown" Grid.Row="2" Grid.Column="1" Content="South"
-                        Style="{StaticResource MovementButtons}" Click="MoveDown_Click"
+
+                <Button Name="MoveDown" Grid.Row="2" Grid.Column="1" Content="South" Margin="5"
+                        Click="MoveDown_Click"
                         Visibility="{Binding CanMoveDown, Converter={StaticResource BooleanToVisibility}}"/>
                 
                 <!--trader-->
-                <Button Name="Trader" Grid.Row="1" Grid.Column="1" Content="Trader"
-                        Style="{StaticResource MovementButtons}"
+                <Button Name="Trader" Grid.Row="1" Grid.Column="1" Content="Trader" Margin="5"
                         Visibility="{Binding HasTrader, Converter={StaticResource BooleanToVisibility}}"
                         Click="OnClick_DisplayTraderScreen"/>
             </Grid>
             <!--<Button Content="Testing trade screen" Click="OnClick_DisplayTraderScreen" HorizontalAlignment="Left" Margin="123,147,0,0" VerticalAlignment="Top" Width="75"/>-->
         </Grid>
     </Grid>
-</Window>
+</Controls:MetroWindow>
